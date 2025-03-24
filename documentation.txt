@@ -1,0 +1,4 @@
+PLease ensure that "requests" module is installed
+- Use an IDE that automatically compiles installed
+- use pip a package installer for python
+    Heres the command: pip install requests
