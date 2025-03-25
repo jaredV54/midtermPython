@@ -20,7 +20,7 @@ def Program2():
             break
         elif sourceChoice == "continue":
             continue
-        print("[------------------------------------------------]\n")
+        print("\n[------------------------------------------------]\n")
 
         print("Select a target platform:")
         for i in range(len(platforms)):
@@ -32,7 +32,7 @@ def Program2():
             break
         elif targetChoice == "continue":
             continue
-        print("[------------------------------------------------]\n")
+        print("\n[------------------------------------------------]\n")
         
         source = platforms[sourceChoice - 1]
         target = platforms[targetChoice - 1]
@@ -42,7 +42,7 @@ def Program2():
         converted = convertPHP(amount, source, target)
         print(f"Final converted amount: {converted:.2f} PHP")
         
-        break  # Exit the loop after successful conversion
+        break  
 
 def convertPHP(amount, source, target):
     # Transaction fee rates for different platforms

@@ -42,7 +42,7 @@ def Program1():
             else:
                 print(f"{count} x {symbol}{denom} {currencyCode}")
         
-        break  # Exit the loop after successful conversion
+        break  
             
 def breakdownAmount(amount, denominations):
     breakdown = {}

@@ -47,7 +47,7 @@ def executeUserChoice(choice):
             continue
         elif nextActionChoice == 1:
             executeUserChoice(choice)
-            
+
         break
 
 if __name__ == "__main__":

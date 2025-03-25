@@ -24,7 +24,7 @@ def Program4():
         if amount == "continue":
             continue
         
-        print("[------------------------------------------------]")
+        print("\n[------------------------------------------------]")
         
         selectedYear = exchangeRatePerYear[years[choice - 1]] 
         print(f"\n{amount:.2f}₱ amount in year {years[choice - 1]}:")
@@ -35,4 +35,4 @@ def Program4():
             value = selectedYear[currency]
             print(f"{currency}: {(value * amount):.2f}{currencyOptions[i + 1][1]}")
         
-        break  # Exit the loop after successful conversion
+        break  
