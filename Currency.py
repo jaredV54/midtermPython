@@ -9,7 +9,7 @@ def GetExchangeRate():
     
     try:
         response = requests.get(url)
-        response.raise_for_status()  # Raises an HTTPError for bad responses
+        response.raise_for_status() 
         data = response.json()
 
         if data['result'] == 'success':
