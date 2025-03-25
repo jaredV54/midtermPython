@@ -9,8 +9,8 @@ def Program4():
 
     print("\n[ - [ Check PHP Average Exchange Rate Per Year ] - ]")
     print("\nSelect year:")
-    for i, year in enumerate(years):
-        print(f"{i + 1}. {year}")
+    for i in range(len(years)):
+        print(f"{i + 1}. {years[i]}")
     print("5. Cancel\n")
 
     choice = UserChoice(5, Program4)

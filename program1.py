@@ -7,9 +7,10 @@ def Program1():
     currencyOptions = GetCurrencyOptions()
 
     print("\n[---------- [ Currency Exchange Menu ] ----------]\n")
-    for i, (code, symbol, _) in currencyOptions.items():
+    for i in range(1, len(currencyOptions) + 1):
+        code, symbol, _ = currencyOptions[i]
         print(f"{i}. {code} ({symbol})")
-    print("5. Cancel\n")
+    print(f"{len(currencyOptions) + 1}. Cancel\n")
 
     choice = UserChoice(5, Program1)
     if choice is None:

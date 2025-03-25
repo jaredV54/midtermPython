@@ -10,8 +10,8 @@ def Program2():
         return None
 
     print("Select a source platform:")
-    for i, platform in enumerate(platforms):
-        print(f"{i + 1}. {platform}")
+    for i in range(len(platforms)):
+        print(f"{i + 1}. {platforms[i]}")
     print("5. Cancel\n")
 
     sourceChoice = UserChoice(5, Program2)
@@ -20,8 +20,8 @@ def Program2():
     print("[------------------------------------------------]\n")
 
     print("Select a target platform:")
-    for i, platform in enumerate(platforms):
-        print(f"{i + 1}. {platform}")
+    for i in range(len(platforms)):
+        print(f"{i + 1}. {platforms[i]}")
     print("5. Cancel\n")
 
     targetChoice = UserChoice(5, Program2)
