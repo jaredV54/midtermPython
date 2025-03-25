@@ -24,5 +24,9 @@ def Program4():
     
     selectedYear = exchangeRatePerYear[years[choice - 1]] 
     print(f"\n{amount:.2f}₱ amount in year {years[choice - 1]}:")
-    for i, (currency, value) in enumerate(selectedYear.items()):
+    
+    keys = ["USD", "AUD", "KRW", "JPY"]
+    for i in range(len(keys)):
+        currency = keys[i]
+        value = selectedYear[currency]
         print(f"{currency}: {(value * amount):.2f}{currencyOptions[i + 1][1]}")
