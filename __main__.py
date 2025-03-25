@@ -20,11 +20,11 @@ def main():
         elif choice == "continue":
             continue
 
-        isBreak = executeUserChoice(choice)
+        isBreak = chooseConversion(choice)
         if isBreak == "break":
             break
         
-def executeUserChoice(choice):
+def chooseConversion(choice):
     if choice == 1:
         Program1()
     elif choice == 2:
@@ -46,7 +46,7 @@ def executeUserChoice(choice):
         elif nextActionChoice == "continue":
             continue
         elif nextActionChoice == 1:
-            executeUserChoice(choice)
+            chooseConversion(choice)
 
         break
 
