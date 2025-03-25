@@ -2,40 +2,47 @@ from AmountInPHP import AmountInPHP
 from UserChoice import UserChoice
 
 def Program2():
-    platforms = ["PayPal", "GCash", "PayMaya", "Bank"]
+    while True:
+        platforms = ["PayPal", "GCash", "PayMaya", "Bank"]
 
-    print("\n[--- [Digital Payment Platform Conversion] ---]\n")
-    amount = AmountInPHP(Program2)
-    if amount is None:
-        return None
+        print("\n[--- [Digital Payment Platform Conversion] ---]\n")
+        amount = AmountInPHP()
+        if amount == "continue":
+            continue
 
-    print("Select a source platform:")
-    for i in range(len(platforms)):
-        print(f"{i + 1}. {platforms[i]}")
-    print("5. Cancel\n")
+        print("Select a source platform:")
+        for i in range(len(platforms)):
+            print(f"{i + 1}. {platforms[i]}")
+        print("5. Cancel\n")
 
-    sourceChoice = UserChoice(5, Program2)
-    if sourceChoice is None:
-        return None
-    print("[------------------------------------------------]\n")
+        sourceChoice = UserChoice(5)
+        if sourceChoice == "break":
+            break
+        elif sourceChoice == "continue":
+            continue
+        print("[------------------------------------------------]\n")
 
-    print("Select a target platform:")
-    for i in range(len(platforms)):
-        print(f"{i + 1}. {platforms[i]}")
-    print("5. Cancel\n")
+        print("Select a target platform:")
+        for i in range(len(platforms)):
+            print(f"{i + 1}. {platforms[i]}")
+        print("5. Cancel\n")
 
-    targetChoice = UserChoice(5, Program2)
-    if targetChoice is None:
-        return None
-    print("[------------------------------------------------]\n")
-    
-    source = platforms[sourceChoice - 1]
-    target = platforms[targetChoice - 1]
+        targetChoice = UserChoice(5, Program2)
+        if targetChoice == "break":
+            break
+        elif targetChoice == "continue":
+            continue
+        print("[------------------------------------------------]\n")
+        
+        source = platforms[sourceChoice - 1]
+        target = platforms[targetChoice - 1]
 
-    print((f"{source} to {target}\n").upper())
+        print((f"{source} to {target}\n").upper())
 
-    converted = convertPHP(amount, source, target)
-    print(f"Final converted amount: {converted:.2f} PHP")
+        converted = convertPHP(amount, source, target)
+        print(f"Final converted amount: {converted:.2f} PHP")
+        
+        break  # Exit the loop after successful conversion
 
 def convertPHP(amount, source, target):
     # Transaction fee rates for different platforms

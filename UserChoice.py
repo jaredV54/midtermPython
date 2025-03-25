@@ -1,4 +1,4 @@
-def UserChoice(maxVal, callbackFunc = None, isMain = False):
+def UserChoice(maxVal, isMain = False):
         minVal = 1
         validRange = range(minVal, maxVal + 1)
 
@@ -9,13 +9,11 @@ def UserChoice(maxVal, callbackFunc = None, isMain = False):
                      print("\n[----- [ Exiting the program. Goodbye! ] -----]\n")
                 else: 
                      print("\n[------------ [ Program Canceled ] ------------]")  
-                return None
+                return "break"
             if choice not in validRange:
                 print(f"Oh noo! That option is out of range. Please enter a number between {minVal} and {maxVal}.")
-                callbackFunc()
-                return None
+                return "continue"
         except ValueError:
             print(f"Invalid input! Please enter a numeric value between {minVal} and {maxVal}.")
-            callbackFunc()
-            return None
+            return "continue"
         return choice
