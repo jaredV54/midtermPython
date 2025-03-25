@@ -40,7 +40,7 @@ def Program1():
             if currencyCode in ["USD", "AUD"]:
                 print(f"{count} x {int(denom * 100)}¢")
             else:
-                print(f"{count} x {symbol}{denom} {currencyCode}")
+                print(f"{count} x {symbol}{denom}")
         
         break  
             
