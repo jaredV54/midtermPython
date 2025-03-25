@@ -28,18 +28,21 @@ def executeUserChoice(choice):
     elif choice == 4:
         Program4()
 
-    print("\nChoose your next action (1-3):")
-    print("1. Convert again with the same program")
-    print("2. Change program")
-    print("3. Exit\n")
+    def chooseNextAction():
+        print("\nChoose your next action (1-3):")
+        print("1. Convert again with the same program")
+        print("2. Change program")
+        print("3. Exit\n")
 
-    postChoice = UserChoice(3, executeUserChoice, True)
-    if choice is None:
-        return None
-    elif postChoice == 1:
-        executeUserChoice(choice)
-    elif postChoice == 2:
-        main()
+        nextActionChoice = UserChoice(3, chooseNextAction, True)
+        if choice is None:
+            return None
+        elif nextActionChoice == 1:
+            executeUserChoice(choice)
+        elif nextActionChoice == 2:
+            main()
+    
+    chooseNextAction()
 
 # Run main
 if __name__ == "__main__":
