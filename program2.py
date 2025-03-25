@@ -12,7 +12,7 @@ def Program2():
     print("Select a source platform:")
     for i, platform in enumerate(platforms):
         print(f"{i + 1}. {platform}")
-    print("5. Choose another action\n")
+    print("5. Cancel\n")
 
     sourceChoice = UserChoice(5, Program2)
     if sourceChoice is None:
@@ -22,7 +22,7 @@ def Program2():
     print("Select a target platform:")
     for i, platform in enumerate(platforms):
         print(f"{i + 1}. {platform}")
-    print("5. Choose another action\n")
+    print("5. Cancel\n")
 
     targetChoice = UserChoice(5, Program2)
     if targetChoice is None:

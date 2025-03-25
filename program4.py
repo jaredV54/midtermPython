@@ -11,7 +11,7 @@ def Program4():
     print("\nSelect year:")
     for i, year in enumerate(years):
         print(f"{i + 1}. {year}")
-    print("5. Choose another action\n")
+    print("5. Cancel\n")
 
     choice = UserChoice(5, Program4)
     if choice is None:
@@ -23,7 +23,6 @@ def Program4():
     print("[------------------------------------------------]")
     
     selectedYear = exchangeRatePerYear[years[choice - 1]] 
-
     print(f"\n{amount:.2f}₱ amount in year {years[choice - 1]}:")
     for i, (currency, value) in enumerate(selectedYear.items()):
         print(f"{currency}: {(value * amount):.2f}{currencyOptions[i + 1][1]}")

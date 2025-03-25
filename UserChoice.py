@@ -6,7 +6,7 @@ def UserChoice(maxVal, callbackFunc = None, isMain = False):
             choice = int(input(f"Enter your choice ({minVal}-{maxVal}): "))
             if choice == maxVal:
                 if  isMain:
-                     print("\n[-- [ Exiting the entire program. Goodbye! ] --]\n")
+                     print("\n[----- [ Exiting the program. Goodbye! ] -----]\n")
                 else: 
                      print("\n[------------ [ Program Canceled ] ------------]")  
                 return None
