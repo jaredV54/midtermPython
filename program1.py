@@ -32,9 +32,13 @@ def Program1():
 
     breakdown = breakdownAmount(converted, denominations)
     print("\nBreakdown:")
-    for denom, count in breakdown.items():
-            print(f"{count} x {int(denom * 100)}¢" if currencyCode in ["USD", "AUD"] else f"{count} x {symbol}{denom} {currencyCode}")
-    
+    for denom in breakdown:
+        count = breakdown[denom]
+        if currencyCode in ["USD", "AUD"]:
+            print(f"{count} x {int(denom * 100)}¢")
+        else:
+            print(f"{count} x {symbol}{denom} {currencyCode}")
+            
 def breakdownAmount(amount, denominations):
     breakdown = {}
     remaining = amount
