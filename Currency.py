@@ -2,22 +2,27 @@
 # https://www.exchange-rates.org
 # https://v6.exchangerate-api.com
 
-def GetExchangeRate():
-    import requests
-    url = "https://v6.exchangerate-api.com/v6/d9c62ee20a9ce6083497c9c1/latest/PHP"
-        
-    response = requests.get(url)
-    data = response.json()
+import requests
 
-    if data['result'] == 'success':
-        conversionRates = data['conversion_rates']
-        return {
-            "USD": conversionRates.get("USD"),
-            "AUD": conversionRates.get("AUD"),
-            "JPY": conversionRates.get("JPY"),
-            "KRW": conversionRates.get("KRW")
-        }
-    else:
+def GetExchangeRate():
+    url = "https://v6.exchangerate-api.com/v6/d9c62ee20a9ce6083497c9c1/latest/PHP"
+    
+    try:
+        response = requests.get(url)
+        response.raise_for_status()  # Raises an HTTPError for bad responses
+        data = response.json()
+
+        if data['result'] == 'success':
+            conversionRates = data['conversion_rates']
+            return {
+                "USD": conversionRates.get("USD"),
+                "AUD": conversionRates.get("AUD"),
+                "JPY": conversionRates.get("JPY"),
+                "KRW": conversionRates.get("KRW")
+            }
+            
+    except requests.exceptions.RequestException:
+        print(f"\nNetwork error occurred!!! \nUsing historical exchange rates as of March 25, 2025.")
         return {
             "USD": 0.01747,  
             "AUD": 0.02775,  
