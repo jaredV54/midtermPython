@@ -4,15 +4,14 @@ from AmountInPHP import AmountInPHP
 
 def Program1():
     while True:
-        exchangeRates = GetExchangeRate()
         currencyOptions = GetCurrencyOptions()
 
         print("\n[---------- [ Currency Exchange Menu ] ----------]\n")
-        for i in range(1, len(currencyOptions) + 1):
+        for i in range(1, 5):
             code, symbol, _ = currencyOptions[i]
             print(f"{i}. {code} ({symbol})")
-        print(f"{len(currencyOptions) + 1}. Cancel\n")
-
+        print("5. Cancel\n")
+ 
         choice = UserChoice(5)
         if choice == "break":
             break
@@ -23,22 +22,24 @@ def Program1():
         if amount == "continue":
             continue
 
-        print("\n[------------------------------------------------]\n")
-       
+        print("\n[--------------- [ Processing... ]---------------]\n")
+
+        exchangeRates = GetExchangeRate()
         currencyCode, symbol, denominations = currencyOptions[choice]
         converted = amount * exchangeRates[currencyCode]
 
         smallestDenomination = min(denominations)
         converted = round(converted / smallestDenomination) * smallestDenomination
 
-        print(f"Converted amount: {symbol}{converted:.2f} {currencyCode}")
+        print("Converted amount:", end=" ")
+        print(f"{symbol}{converted:.2f}" if currencyCode in ['USD', 'AUD'] else f"{symbol}{converted} {currencyCode}")
 
         breakdown = breakdownAmount(converted, denominations)
         print("\nBreakdown:")
         for denom in breakdown:
             count = breakdown[denom]
             if currencyCode in ["USD", "AUD"]:
-                print(f"{count} x {int(denom * 100)}¢")
+                print(f"{count} x " + f"{int(denom * 100)}¢" if denom < 1 else f"{count} x {denom}$")
             else:
                 print(f"{count} x {symbol}{denom}")
         

@@ -10,7 +10,7 @@ def main():
         print("Please choose your conversion:")
         print("1. Currency Exchange")
         print("2. Digital Payment Platform")
-        print("3. Program3")
+        print("3. Forex Exchange Conversion")
         print("4. Check PHP Average Exchange Rate Per Year")
         print("5. Exit\n")
 
@@ -20,9 +20,7 @@ def main():
         elif choice == "continue":
             continue
 
-        isBreak = chooseConversion(choice)
-        if isBreak == "break":
-            break
+        chooseConversion(choice)
         
 def chooseConversion(choice):
     if choice == 1:
@@ -41,9 +39,7 @@ def chooseConversion(choice):
         print("3. Exit\n")
 
         nextActionChoice = UserChoice(3, True)
-        if nextActionChoice == "break":
-            return nextActionChoice
-        elif nextActionChoice == "continue":
+        if nextActionChoice == "continue":
             continue
         elif nextActionChoice == 1:
             chooseConversion(choice)

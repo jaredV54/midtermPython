@@ -1,7 +1,6 @@
 from Currency import GetExchangeRatePerYear, GetCurrencyOptions
 from AmountInPHP import AmountInPHP
 from UserChoice import UserChoice
-
 def Program4():
     while True:
         exchangeRatePerYear = GetExchangeRatePerYear()
