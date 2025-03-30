@@ -1,5 +1,5 @@
 from UserChoice import UserChoice
-from Amount import AmountInPhysicalCurrency
+from AmountInPhysicalCurrency import AmountInPhysicalCurrency
 from Currency import GetCryptoCurrencies
 
 def Program3():

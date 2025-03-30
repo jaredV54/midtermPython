@@ -1,4 +1,4 @@
-from Amount import AmountInPhysicalCurrency
+from AmountInPhysicalCurrency import AmountInPhysicalCurrency
 from UserChoice import UserChoice
 
 def Program2():

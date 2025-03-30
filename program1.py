@@ -1,6 +1,6 @@
 from Currency import GetExchangeRate, GetCurrencyOptions
 from UserChoice import UserChoice
-from Amount import AmountInPhysicalCurrency
+from AmountInPhysicalCurrency import AmountInPhysicalCurrency
 
 def Program1():
     while True:
