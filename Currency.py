@@ -78,4 +78,6 @@ def GetCryptoCurrencies(targetPhysical, targetCrypto, amount):
         return response.json()
         
     except requests.exceptions.RequestException:
+        print("Network error occurred!!! Please try again.")
+        print("Please make sure you are connected to the internet.")
         return None

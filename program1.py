@@ -43,6 +43,7 @@ def Program1():
 def breakdownAmount(amount, denominations):
     breakdown = {}
     remaining = amount
+
     for denom in denominations:
         count = int(remaining // denom)
         if count > 0:

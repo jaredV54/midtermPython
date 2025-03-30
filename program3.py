@@ -35,8 +35,6 @@ def Program3():
 
         prices = GetCryptoCurrencies(source, target, amount)
         if not prices:
-            print("Network error occurred!!! Please try again.")
-            print("Please make sure you are connected to the internet.")
             continue
         
         print(f"{source}: {prices["amount"]}")
