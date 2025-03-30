@@ -1,53 +1,45 @@
-import requests
 from UserChoice import UserChoice
-from AmountInPHP import AmountInPHP
-
-def fetchCryptoPrices(targetCrypto, amount):
-    url = f"https://api.fastforex.io/convert?from=PHP&to={targetCrypto}&amount={amount}&precision=2&api_key=ba8f9e999c-19a302c8ad-strv72"
-    headers = {"accept": "application/json"}
-
-    try:
-        response = requests.get(url, headers=headers)
-        response.raise_for_status()  
-        data = response.json()
-
-        if "result" in data:
-            return data["result"]
-    except requests.exceptions.RequestException:
-        return None
+from Amount import AmountInPhysicalCurrency
+from Currency import GetCryptoCurrencies
 
 def Program3():
     while True:
         print("\n[--------- [ Forex Exchange Conversion ] ---------]\n")
-        cryptoCurrencies = ["BTC", "SOL", "XRP", "ETH"]
 
-        print("Select a crypto currency:")
+        PHYSICAL_CURRENCIES = ["PHP","USD", "AUD", "KRW", "JPY"]
+        CRYPTO_CURRENCIES = ["BTC", "SOL", "XRP", "ETH"]
+
+        print("Select a Physical Currency:")
+        for i in range(1, 6):
+            print(f"{i}. {PHYSICAL_CURRENCIES[i - 1]}")
+        print(f"6. Cancel\n")
+
+        physicalCurrency = UserChoice(6)
+        if physicalCurrency == "break":
+            break
+
+        print("\nSelect a Crypto Currency:")
         for i in range(1, 5):
-            print(f"{i}. {cryptoCurrencies[i - 1]}")
+            print(f"{i}. {CRYPTO_CURRENCIES[i - 1]}")
         print(f"5. Cancel\n")
 
-        choice = UserChoice(5)
-        if choice == "break":
+        crytoCurrency = UserChoice(5)
+        if crytoCurrency == "break":
             break
-        elif choice == "continue":
-            continue
 
-        amount = AmountInPHP()
-        if amount == "continue":
-            continue
-
-        targetCrypto = cryptoCurrencies[choice - 1]
+        source = PHYSICAL_CURRENCIES[physicalCurrency - 1]
+        target = CRYPTO_CURRENCIES[crytoCurrency - 1]
+        amount = AmountInPhysicalCurrency(source)
 
         print("\n[--------------- [ Processing... ]---------------]\n")
 
-        prices = fetchCryptoPrices(targetCrypto, amount)
+        prices = GetCryptoCurrencies(source, target, amount)
         if not prices:
             print("Network error occurred!!! Please try again.")
             print("Please make sure you are connected to the internet.")
             continue
         
-        print(f"PHP: {amount}")
-        print(f"{targetCrypto}: {prices[targetCrypto]}")
-        print(f"Rate: {prices["rate"]}")
+        print(f"{source}: {prices["amount"]}")
+        print(f"{target}: {prices["result"][target]}")
+        print(f"Rate: {prices["result"]["rate"]}")
         break
-        

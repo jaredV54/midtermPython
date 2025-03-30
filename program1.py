@@ -1,12 +1,12 @@
 from Currency import GetExchangeRate, GetCurrencyOptions
 from UserChoice import UserChoice
-from AmountInPHP import AmountInPHP
+from Amount import AmountInPhysicalCurrency
 
 def Program1():
     while True:
         currencyOptions = GetCurrencyOptions()
 
-        print("\n[---------- [ Currency Exchange Menu ] ----------]\n")
+        print("\n[-------- [ PHP Currency Exchange Menu ] --------]\n")
         for i in range(1, 5):
             code, symbol, _ = currencyOptions[i]
             print(f"{i}. {code} ({symbol})")
@@ -15,13 +15,8 @@ def Program1():
         choice = UserChoice(5)
         if choice == "break":
             break
-        elif choice == "continue":
-            continue
         
-        amount = AmountInPHP()
-        if amount == "continue":
-            continue
-
+        amount = AmountInPhysicalCurrency("PHP")
         print("\n[--------------- [ Processing... ]---------------]\n")
 
         exchangeRates = GetExchangeRate()

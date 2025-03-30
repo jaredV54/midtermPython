@@ -1,56 +1,51 @@
-from AmountInPHP import AmountInPHP
+from Amount import AmountInPhysicalCurrency
 from UserChoice import UserChoice
 
 def Program2():
     while True:
-        platforms = ["PayPal", "GCash", "PayMaya", "Bank"]
+        PLATFORMS = ["PayPal", "GCash", "PayMaya", "Bank"]
 
-        print("\n[--- [Digital Payment Platform Conversion] ---]\n")
-        amount = AmountInPHP()
-        if amount == "continue":
-            continue
+        print("\n[--- [PHP Digital Payment Platform Conversion] ---]\n")
+        amount = AmountInPhysicalCurrency("PHP")
 
-        print("Select a source platform:")
-        for i in range(len(platforms)):
-            print(f"{i + 1}. {platforms[i]}")
+        print("\nSelect a source platform:")
+        for i in range(len(PLATFORMS)):
+            print(f"{i + 1}. {PLATFORMS[i]}")
         print("5. Cancel\n")
 
         sourceChoice = UserChoice(5)
         if sourceChoice == "break":
             break
-        elif sourceChoice == "continue":
-            continue
         print("\n[------------------------------------------------]\n")
 
         print("Select a target platform:")
-        for i in range(len(platforms)):
-            print(f"{i + 1}. {platforms[i]}")
+        for i in range(len(PLATFORMS)):
+            print(f"{i + 1}. {PLATFORMS[i]}")
         print("5. Cancel\n")
 
-        targetChoice = UserChoice(5, Program2)
+        targetChoice = UserChoice(5)
         if targetChoice == "break":
             break
-        elif targetChoice == "continue":
-            continue
         print("\n[------------------------------------------------]\n")
         
-        source = platforms[sourceChoice - 1]
-        target = platforms[targetChoice - 1]
+        source = PLATFORMS[sourceChoice - 1]
+        target = PLATFORMS[targetChoice - 1]
 
         print((f"{source} to {target}\n").upper())
 
-        converted = convertPHP(amount, source, target)
-        print(f"Final converted amount: {converted:.2f} PHP")
+        converted = convertToDigitalPlatform(amount, source, target)
+        print(f"Amount to pay: {converted:.2f}₱")
+        print(f"Amount they receive: {amount:.2f}₱")
         
         break  
 
-def convertPHP(amount, source, target):
-    # Transaction fee rates for different platforms
+def convertToDigitalPlatform(amount, source, target):
+    # Transaction fee rates for different PLATFORMS
     fees = {
-        "PayPal": 0.029,   # 2.9%
-        "GCash": 0.02,     # 2.0%
-        "PayMaya": 0.02,   # 2.0%
-        "Bank": 0.015      # 1.5% Intra-bank transfers such as BDO to BDO, BPI to BPI etc.
+        "PayPal": 0.029,   
+        "GCash": 0.02,     
+        "PayMaya": 0.02,   
+        "Bank": 0.015      # Like Intra-bank transfers such as BDO to BDO, BPI to BPI etc.
     }
     
     isSamePlatform = source == target
@@ -61,6 +56,8 @@ def convertPHP(amount, source, target):
     if isSamePlatform:
         print(f"There is no charge :)")
     else:
-        print(f"The transaction fee for {source} is {(fees[source] * 100):.1f}%, so the fee is {feeAmount:.2f} PHP: {amount:.2f} + {feeAmount:.2f} PHP")
+        print(f"Transaction fee for {source}: {(fees[source] * 100):.1f}%")
+        print(f"PHP: {amount:.2f}₱")
+        print(f"Fee: {feeAmount:.2f}₱\n")
     
     return totalAmount

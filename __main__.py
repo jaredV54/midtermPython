@@ -8,10 +8,10 @@ def main():
     while True:
         print("\n[------------------[ Main Menu ]-----------------]\n")
         print("Please choose your conversion:")
-        print("1. Currency Exchange")
-        print("2. Digital Payment Platform")
+        print("1. PHP Currency Exchange")
+        print("2. PHP Digital Payment Platform")
         print("3. Forex Exchange Conversion")
-        print("4. Check PHP Average Exchange Rate Per Year")
+        print("4. PHP Yearly Average Exchange Rate")
         print("5. Exit\n")
 
         choice = UserChoice(5, True)

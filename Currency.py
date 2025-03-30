@@ -67,3 +67,15 @@ def GetCurrencyOptions():
         3: ("KRW", "₩", [50000, 10000, 5000, 1000, 500, 100, 50, 10, 1]),
         4: ("JPY", "¥", [10000, 5000, 2000, 1000, 500, 100, 50, 10, 5, 1])
     }
+
+def GetCryptoCurrencies(targetPhysical, targetCrypto, amount):
+    url = f"https://api.fastforex.io/convert?from={targetPhysical}&to={targetCrypto}&amount={amount}&precision=2&api_key=ba8f9e999c-19a302c8ad-strv72"
+    headers = {"accept": "application/json"}
+
+    try:
+        response = requests.get(url, headers=headers)
+        response.raise_for_status()  
+        return response.json()
+        
+    except requests.exceptions.RequestException:
+        return None

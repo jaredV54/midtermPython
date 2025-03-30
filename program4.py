@@ -1,36 +1,31 @@
 from Currency import GetExchangeRatePerYear, GetCurrencyOptions
-from AmountInPHP import AmountInPHP
+from Amount import AmountInPhysicalCurrency
 from UserChoice import UserChoice
 def Program4():
     while True:
         exchangeRatePerYear = GetExchangeRatePerYear()
         currencyOptions = GetCurrencyOptions()
-        years = ["2021", "2022", "2023", "2024"]
+        YEARS = ["2021", "2022", "2023", "2024"]
 
-        print("\n[ - [ Check PHP Average Exchange Rate Per Year ] - ]")
+        print("\n[----- [ PHP Yearly Average Exchange Rate  ] -----]")
         print("\nSelect year:")
-        for i in range(len(years)):
-            print(f"{i + 1}. {years[i]}")
+        for i in range(len(YEARS)):
+            print(f"{i + 1}. {YEARS[i]}")
         print("5. Cancel\n")
 
         choice = UserChoice(5)
         if choice == "break":
             break
-        elif choice == "continue":
-            continue
         
-        amount = AmountInPHP()
-        if amount == "continue":
-            continue
-        
+        amount = AmountInPhysicalCurrency("PHP")
         print("\n[------------------------------------------------]")
         
-        selectedYear = exchangeRatePerYear[years[choice - 1]] 
-        print(f"\n{amount:.2f}₱ amount in year {years[choice - 1]}:")
+        selectedYear = exchangeRatePerYear[YEARS[choice - 1]] 
+        print(f"\n{amount:.2f}₱ amount in year {YEARS[choice - 1]}:")
         
-        keys = ["USD", "AUD", "KRW", "JPY"]
-        for i in range(len(keys)):
-            currency = keys[i]
+        PHYSICAL_CURRENCIES = ["USD", "AUD", "KRW", "JPY"]
+        for i in range(len(PHYSICAL_CURRENCIES)):
+            currency = PHYSICAL_CURRENCIES[i]
             value = selectedYear[currency]
             print(f"{currency}: {(value * amount):.2f}{currencyOptions[i + 1][1]}")
         
