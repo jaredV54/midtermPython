@@ -1,6 +1,7 @@
 from Currency import GetExchangeRatePerYear, GetCurrencyOptions
 from AmountInPhysicalCurrency import AmountInPhysicalCurrency
 from UserChoice import UserChoice
+
 def Program4():
     while True:
         exchangeRatePerYear = GetExchangeRatePerYear()
