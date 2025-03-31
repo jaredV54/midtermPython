@@ -4,43 +4,43 @@ from AmountInPhysicalCurrency import AmountInPhysicalCurrency  # Import to get a
 
 def Program1():
     while True:
-        # Get the currency options and their symbols
+        # Retrieve the available currency options and their symbols
         currencyOptions = GetCurrencyOptions()
 
-        # Display the program title
+        # Display the program title to indicate the current operation
         print("\n[-------- [ PHP Currency Exchange Menu ] --------]\n")
-        # Ask the user to select a currency to convert to
+        # Prompt the user to select a currency to convert to
         for i in range(1, 5):
             code, symbol, _ = currencyOptions[i]
-            # Show each currency with its symbol
+            # Display each currency option with its symbol
             print(f"{i}. {code} ({symbol})")
-        # Option to cancel the selection
+        # Provide an option to cancel the selection process
         print("5. Cancel\n")
  
-        # Get the user's choice for the currency
+        # Get the user's choice for the currency using the UserChoice function
         choice = UserChoice(5)
         if choice == "break":
-            # If the user cancels, exit the loop
+            # If the user chooses to cancel, exit the loop and end the program
             break
         
-        # Ask the user to enter an amount in PHP currency
+        # Prompt the user to enter an amount in PHP currency
         amount = AmountInPhysicalCurrency("PHP")
-        # Display a processing message
+        # Display a message indicating that the conversion process is underway
         print("\n[--------------- [ Processing... ]---------------]\n")
 
-        # Get the latest exchange rates
+        # Retrieve the latest exchange rates from the Currency module
         exchangeRates = GetExchangeRate()
         # Get the chosen currency's code, symbol, and denominations
         currencyCode, symbol, denominations = currencyOptions[choice]
-        # Calculate the converted amount
+        # Calculate the converted amount using the exchange rate
         converted = amount * exchangeRates[currencyCode]
 
-        # Find the smallest denomination for rounding
+        # Find the smallest denomination for rounding purposes
         smallestDenomination = min(denominations)
         # Round the converted amount to the nearest smallest denomination
         converted = round(converted / smallestDenomination) * smallestDenomination
 
-        # Display the converted amount with the correct symbol
+        # Display the converted amount with the appropriate currency symbol
         print("Converted amount:", end=" ")
         print(f"{symbol}{converted:.2f}" if currencyCode in ['USD', 'AUD'] else f"{symbol}{converted} {currencyCode}")
 
@@ -56,23 +56,23 @@ def Program1():
             else:
                 print(f"{count} x {symbol}{denom}")
         
-        # Exit the loop after one conversion
+        # Exit the loop after successfully completing one conversion
         break  
             
 def breakdownAmount(amount, denominations):
-    # Create a dictionary to store the breakdown of the amount
+    # Create a dictionary to store the breakdown of the amount into denominations
     breakdown = {}
     # Start with the full amount to be broken down
     remaining = amount
 
-    # Go through each denomination
+    # Iterate over each denomination to calculate how many fit into the remaining amount
     for denom in denominations:
-        # Calculate how many of this denomination fit into the remaining amount
+        # Determine how many of this denomination fit into the remaining amount
         count = int(remaining // denom)
         if count > 0:
-            # If any fit, add them to the breakdown
+            # If any fit, add them to the breakdown dictionary
             breakdown[denom] = count
             # Subtract the value of these denominations from the remaining amount
             remaining = round(remaining - denom * count, 2) 
-    # Return the breakdown of the amount
+    # Return the breakdown of the amount as a dictionary
     return breakdown

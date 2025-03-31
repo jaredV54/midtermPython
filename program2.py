@@ -1,62 +1,62 @@
-from AmountInPhysicalCurrency import AmountInPhysicalCurrency
-from UserChoice import UserChoice
+from AmountInPhysicalCurrency import AmountInPhysicalCurrency  # Import to ensure the user enters a valid monetary amount
+from UserChoice import UserChoice  # Import to handle user input for menu selections
 
 def Program2():
     while True:
-        # List of platforms you can choose from
+        # Define a list of digital payment platforms available for conversion
         PLATFORMS = ["PayPal", "GCash", "PayMaya", "Bank"]
 
-        # Display the program title
+        # Display the program title to indicate the current operation
         print("\n[--- [PHP Digital Payment Platform Conversion] ---]\n")
         
-        # Ask the user to enter an amount in PHP currency
+        # Prompt the user to enter an amount in PHP currency
         amount = AmountInPhysicalCurrency("PHP")
 
-        # Ask the user to select a source platform
+        # Prompt the user to select a source platform from the list
         print("\nSelect a source platform:")
         for i in range(len(PLATFORMS)):
-            # Show each platform with a number
+            # Display each platform option with a corresponding number
             print(f"{i + 1}. {PLATFORMS[i]}")
-        # Option to cancel the selection
+        # Provide an option to cancel the selection process
         print("5. Cancel\n")
 
-        # Get the user's choice for the source platform
+        # Get the user's choice for the source platform using the UserChoice function
         sourceChoice = UserChoice(5)
         if sourceChoice == "break":
-            # If the user cancels, exit the loop
+            # If the user chooses to cancel, exit the loop and end the program
             break
         print("\n[------------------------------------------------]\n")
 
-        # Ask the user to select a target platform
+        # Prompt the user to select a target platform from the list
         print("Select a target platform:")
         for i in range(len(PLATFORMS)):
-            # Show each platform with a number
+            # Display each platform option with a corresponding number
             print(f"{i + 1}. {PLATFORMS[i]}")
-        # Option to cancel the selection
+        # Provide an option to cancel the selection process
         print("5. Cancel\n")
 
-        # Get the user's choice for the target platform
+        # Get the user's choice for the target platform using the UserChoice function
         targetChoice = UserChoice(5)
         if targetChoice == "break":
-            # If the user cancels, exit the loop
+            # If the user chooses to cancel, exit the loop and end the program
             break
         print("\n[------------------------------------------------]\n")
         
-        # Get the names of the chosen source and target platforms
+        # Determine the names of the chosen source and target platforms based on user input
         source = PLATFORMS[sourceChoice - 1]
         target = PLATFORMS[targetChoice - 1]
 
-        # Display the conversion direction
+        # Display the conversion direction from source to target platform
         print((f"{source} to {target}\n").upper())
 
-        # Convert the amount and calculate fees
+        # Convert the amount and calculate any applicable transaction fees
         converted = convertToDigitalPlatform(amount, source, target)
-        # Show the total amount to pay
+        # Display the total amount to be paid, including fees
         print(f"Amount to pay: {converted:.2f}₱")
-        # Show the amount the target receives
+        # Display the amount the target platform receives
         print(f"Amount they receive: {amount:.2f}₱")
         
-        # Exit the loop after one conversion
+        # Exit the loop after successfully completing one conversion
         break  
 
 def convertToDigitalPlatform(amount, source, target):
@@ -73,18 +73,18 @@ def convertToDigitalPlatform(amount, source, target):
     
     # Determine the fee rate based on whether platforms are the same
     feeRate = 0.0 if isSamePlatform else fees[target]
-    # Calculate the fee amount
+    # Calculate the fee amount based on the fee rate
     feeAmount = amount * feeRate
-    # Calculate the total amount including fees
+    # Calculate the total amount to be paid, including the fee
     totalAmount = amount + feeAmount
     if isSamePlatform:
-        # No fee if transferring within the same platform
+        # If transferring within the same platform, there is no fee
         print(f"There is no charge :)")
     else:
-        # Show the transaction fee details
+        # Display the transaction fee details for the conversion
         print(f"Transaction fee for {source}: {(fees[source] * 100):.1f}%")
         print(f"PHP: {amount:.2f}₱")
         print(f"Fee: {feeAmount:.2f}₱\n")
     
-    # Return the total amount to be paid
+    # Return the total amount to be paid, including any fees
     return totalAmount
